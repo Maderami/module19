@@ -37,10 +37,9 @@ class ElectronicDevice {
             let hDiff = diffTimeSE / (3600 * 1000);
             deviceName.prototype.powerPotreb = (deviceName.prototype.power * hDiff) / 1000
             document.getElementById(`${elementID}`).innerHTML = "<span>Название устройства: " + deviceName.prototype.name + "</span><br>" +  "<span>Название модели: " + deviceName.prototype.modelDevice + '</span><br>'  +  "<span>Статус включения: "+ deviceName.prototype.statusActivation + '</span><br>' + "<span>Общая мощность ватт: "+ deviceName.prototype.power + '</span><br>'
-            + "<span>Затраченная мощность за период включения: "+ deviceName.prototype.powerPotreb + '</span><br>'
+            + "<span>Затраченная мощность за период включения  в кл. ватт: "+ deviceName.prototype.powerPotreb + '</span><br>'
             document.getElementById(`${buttonID}`).innerText = 'Включить'
         }
-        console.log('checking button', this.deviceName)
     }
 }
 
@@ -82,7 +81,7 @@ tableLamp.prototype = new electroDev.constructor('Настольный свет�
     'настольный светильник', '12 мес', 'Xiaomi Mi Smart LED Desk Lamp 1S', '9')
 electricKettle.prototype = new electroDev.constructor('Электрочайник Econ ECO-1781KE бежевый',
     'электрочайник', '12 мес', 'Econ ECO-1781KE', '1500')
-console.log(electricKettle)
+
 
 document.getElementById('tableLamp').innerHTML = "<span>Название устройства: " + tableLamp.prototype.name + "</span><br>" +  "<span>Название модели: " + tableLamp.prototype.modelDevice + '</span><br>'  +  "<span>Статус включения: " + tableLamp.statusActivation + '</span><br>' + "<span>Общая мощность ватт: "+ tableLamp.prototype.power + '</span><br>'
 
