@@ -16,6 +16,6 @@
 </div>
 </body>
 <footer>
-    <script type="text/javascript" src="assets/js/mainscript.js"></script>
+    <script type="text/javascript" src="assets/js/task5.js"></script>
 </footer>
 </html>
