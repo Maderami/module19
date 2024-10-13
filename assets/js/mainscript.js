@@ -1,4 +1,6 @@
 class ElectronicDevice {
+    timeStart;
+    timeEnd;
     constructor(name, typeDevice, warranty, modelDevice, power) {
         this.name = name,
             this.typeDevice = typeDevice,
@@ -17,28 +19,26 @@ class ElectronicDevice {
 
 
     getChangeActivation(elementID, deviceName, buttonID) {
-        let timeStart = ''
+
+
         if (document.getElementById(`${buttonID}`).innerText.toString() === 'Включить') {
             deviceName.prototype.statusActivation = this.setEnabledDevice()
             document.getElementById(`${elementID}`).innerHTML = ''
             document.getElementById(`${elementID}`).innerHTML = "<span>Название устройства: " + deviceName.prototype.name + "</span><br>" + "<span>Название модели: " + deviceName.prototype.modelDevice + '</span><br>' +"<span>Статус включения: "+ deviceName.prototype.statusActivation + '</span><br>' +
                 '<span>Гарантия: ' + deviceName.prototype.warranty + '</span><br>' + '<span>Тип устройства: '+ deviceName.prototype.typeDevice + '</span><br>' + "<span>Дополнительное описание: <br>" + deviceName.getInfoDevice() + '</span>'
             document.getElementById(`${buttonID}`).innerText = 'Выключить'
-            timeStart = new Date()
-            timeStart = timeStart.getHours()
+            this.timeStart = new Date()
 
         } else if (document.getElementById(`${buttonID}`).innerText.toString() === 'Выключить') {
             deviceName.prototype.statusActivation = this.setShutdownDevice()
             document.getElementById(`${elementID}`).innerHTML = ''
-            let timeEnd = new Date()
-            timeEnd = timeEnd.getHours()
-            let diffTimeSE = timeEnd - timeStart
-            deviceName.prototype.powerPotreb = parseInt(deviceName.prototype.power) * diffTimeSE
-
-            document.getElementById(`${elementID}`).innerHTML = "<span>Название модели: " + deviceName.prototype.name + "</span><br>" + deviceName.prototype.modelDevice + '<br>' +  deviceName.prototype.statusActivation + '<br>' + deviceName.prototype.powerPotreb
+            this.timeEnd = new Date()
+            let diffTimeSE = this.timeEnd.getTime() - this.timeStart.getTime()
+            let hDiff = diffTimeSE / (3600 * 1000);
+            deviceName.prototype.powerPotreb = (deviceName.prototype.power * hDiff) / 1000
+            document.getElementById(`${elementID}`).innerHTML = "<span>Название устройства: " + deviceName.prototype.name + "</span><br>" +  "<span>Название модели: " + deviceName.prototype.modelDevice + '</span><br>'  +  "<span>Статус включения: "+ deviceName.prototype.statusActivation + '</span><br>' + "<span>Общая мощность ватт: "+ deviceName.prototype.power + '</span><br>'
+            + "<span>Затраченная мощность за период включения: "+ deviceName.prototype.powerPotreb + '</span><br>'
             document.getElementById(`${buttonID}`).innerText = 'Включить'
-
-
         }
         console.log('checking button', this.deviceName)
     }
@@ -84,9 +84,9 @@ electricKettle.prototype = new electroDev.constructor('Электрочайни�
     'электрочайник', '12 мес', 'Econ ECO-1781KE', '1500')
 console.log(electricKettle)
 
-document.getElementById('tableLamp').innerHTML = "<span>Название модели: " + tableLamp.prototype.name + "</span><br>" + tableLamp.prototype.modelDevice + '<br>'  + tableLamp.statusActivation + '<br>'
+document.getElementById('tableLamp').innerHTML = "<span>Название устройства: " + tableLamp.prototype.name + "</span><br>" +  "<span>Название модели: " + tableLamp.prototype.modelDevice + '</span><br>'  +  "<span>Статус включения: " + tableLamp.statusActivation + '</span><br>' + "<span>Общая мощность ватт: "+ tableLamp.prototype.power + '</span><br>'
 
-document.getElementById('electricKettle').innerHTML = "<span>Название модели: " + electricKettle.prototype.name + "<br>" + electricKettle.prototype.modelDevice + '<br>'  + electricKettle.statusActivation + '<br>'
+document.getElementById('electricKettle').innerHTML = "<span>Название устройства: " + electricKettle.prototype.name + "</span><br>" +  "<span>Название модели: " + electricKettle.prototype.modelDevice + '</span><br>'  +  "<span>Статус включения: " + electricKettle.statusActivation + '</span><br>' + "<span>Общая мощность ватт: "+ electricKettle.prototype.power + '</span><br>'
 
 document.getElementById('clickEnSHEK').addEventListener('click', function () {
     electroDev.getChangeActivation('electricKettle', electricKettle, 'clickEnSHEK')
