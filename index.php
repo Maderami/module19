@@ -10,7 +10,7 @@
 
 </header>
 <body>
-<div id="Task5">
+<div id="Task4">
     <h1>Ответ к заданию 4</h1>
     <div><p id="electricK"></p><br><button id="clickESEK">Включить</button></div>
     <div><p id="tableL"></p><br><button id="clickESTL">Включить</button></div>
