@@ -10,7 +10,9 @@ require_once('assets/js/mainscript.js');
 
 </header>
 <body>
+<p id="resultJS">
 
+</p>
 </body>
 <footer>
 
