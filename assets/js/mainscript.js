@@ -1,78 +1,97 @@
+class ElectronicDevice {
+    constructor(name, typeDevice, warranty, modelDevice, power) {
+        this.name = name,
+            this.typeDevice = typeDevice,
+            this.warranty = warranty,
+            this.modelDevice = modelDevice,
+            this.power = power
+            this.powerPotreb = 0
+    }
+    setShutdownDevice() {
+        return 'shutdown'
+    }
+    setEnabledDevice() {
+        return 'enabled'
+    }
 
 
-function ElectronicDevice(name, typeDevice, warranty, modelDevice, power) {
-    this.name = name,
-        this.typeDevice = typeDevice,
-        this.warranty = warranty,
-        this.modelDevice = modelDevice,
-        this.power = power
-}
 
-ElectronicDevice.prototype.shutdownDevice = function () {
-    return 'shutdown'
-}
-ElectronicDevice.prototype.enabledDevice = function () {
-    return 'enabled'
-}
+    getChangeActivation(elementID, deviceName, buttonID) {
+        let timeStart = ''
+        if (document.getElementById(`${buttonID}`).innerText.toString() === 'Включить') {
+            deviceName.prototype.statusActivation = this.setEnabledDevice()
+            document.getElementById(`${elementID}`).innerHTML = ''
+            document.getElementById(`${elementID}`).innerHTML = "<span>Название устройства: " + deviceName.prototype.name + "</span><br>" + "<span>Название модели: " + deviceName.prototype.modelDevice + '</span><br>' +"<span>Статус включения: "+ deviceName.prototype.statusActivation + '</span><br>' +
+                '<span>Гарантия: ' + deviceName.prototype.warranty + '</span><br>' + '<span>Тип устройства: '+ deviceName.prototype.typeDevice + '</span><br>' + "<span>Дополнительное описание: <br>" + deviceName.getInfoDevice() + '</span>'
+            document.getElementById(`${buttonID}`).innerText = 'Выключить'
+            timeStart = new Date()
+            timeStart = timeStart.getHours()
 
-function TableLamp(color, typeLightSource, countLightSource, statusActivation) {
-    this.color = color,
-        this.typeLightSource = typeLightSource,
-        this.countLightSource = countLightSource,
-        this.statusActivation = statusActivation,
-        this.getChangeActivation = function () {
-            if (document.getElementById('clickEnSHTL').innerText.toString() === 'Включить') {
-                tableLamp.statusActivation = ElectronicDevice.prototype.enabledDevice()
-                document.getElementById('tableLamp').innerHTML = ''
-                document.getElementById('tableLamp').innerHTML = "<span>Название модели: " + tableLamp.name + "</span><br>" + tableLamp.modelDevice + '<br>' + tableLamp.color + '<br>' + tableLamp.statusActivation + '<br>'
-                document.getElementById('clickEnSHTL').innerText = 'Выключить'
-            } else if (document.getElementById('clickEnSHTL').innerText.toString() === 'Выключить') {
-                tableLamp.statusActivation = ElectronicDevice.prototype.shutdownDevice()
-                document.getElementById('tableLamp').innerHTML = ''
-                document.getElementById('tableLamp').innerHTML = "<span>Название модели: " + tableLamp.name + "</span><br>" + tableLamp.modelDevice + '<br>' + tableLamp.color + '<br>' + tableLamp.statusActivation + '<br>'
-                document.getElementById('clickEnSHTL').innerText = 'Включить'
-            }
-            console.log('checking button', electricKettle)
+        } else if (document.getElementById(`${buttonID}`).innerText.toString() === 'Выключить') {
+            deviceName.prototype.statusActivation = this.setShutdownDevice()
+            document.getElementById(`${elementID}`).innerHTML = ''
+            let timeEnd = new Date()
+            timeEnd = timeEnd.getHours()
+            let diffTimeSE = timeEnd - timeStart
+            deviceName.prototype.powerPotreb = parseInt(deviceName.prototype.power) * diffTimeSE
+
+            document.getElementById(`${elementID}`).innerHTML = "<span>Название модели: " + deviceName.prototype.name + "</span><br>" + deviceName.prototype.modelDevice + '<br>' +  deviceName.prototype.statusActivation + '<br>' + deviceName.prototype.powerPotreb
+            document.getElementById(`${buttonID}`).innerText = 'Включить'
+
+
         }
+        console.log('checking button', this.deviceName)
+    }
 }
 
-function ElectricKettle(volume, thermoregulator, delStart, statusActivation) {
-    this.volume = volume,
-        this.thermoregulator = `${thermoregulator}`,
-        this.delStart = `${delStart}`,
-        this.statusActivation = statusActivation,
-        this.getChangeActivation = function () {
-            if (document.getElementById('clickEnSHEK').innerText.toString() === 'Включить') {
-                electricKettle.statusActivation = ElectronicDevice.prototype.enabledDevice()
-                document.getElementById('electricKettle').innerHTML = ''
-                document.getElementById('electricKettle').innerHTML = electricKettle.name + "<br>" + electricKettle.modelDevice + '<br>' + electricKettle.delStart + '<br>' + electricKettle.statusActivation + '<br>'
-                document.getElementById('clickEnSHEK').innerText = 'Выключить'
-            } else if (document.getElementById('clickEnSHEK').innerText.toString() === 'Выключить') {
-                electricKettle.statusActivation = ElectronicDevice.prototype.shutdownDevice()
-                document.getElementById('electricKettle').innerHTML = ''
-                document.getElementById('electricKettle').innerHTML = electricKettle.name + "<br>" + electricKettle.modelDevice + '<br>' + electricKettle.delStart + '<br>' + electricKettle.statusActivation + '<br>'
-                document.getElementById('clickEnSHEK').innerText = 'Включить'
-            }
-            console.log('checking button', electricKettle)
-        }
+class TableLamp{
+    constructor(color, typeLightSource, countLightSource, statusActivation) {
+        this.color = color,
+            this.typeLightSource = typeLightSource,
+            this.countLightSource = countLightSource,
+            this.statusActivation = statusActivation
+
+    }
+    getInfoDevice(){
+        return '<span>Основной цвет: ' + this.color +  '</span><br>' + '<span>Тип источника света: ' + this.typeLightSource + '</span><br>' + '<span>Количество источников света: ' + this.countLightSource + '</span><br>'
+    }
 }
 
-TableLamp.prototype = new ElectronicDevice('Настольный светильник Xiaomi Mi Smart LED Desk Lamp 1S белый',
-    'настольный светильник', '12 мес', 'Xiaomi Mi Smart LED Desk Lamp 1S', '9 Вт')
-ElectricKettle.prototype = new ElectronicDevice('Электрочайник Econ ECO-1781KE бежевый',
-    'электрочайник', '12 мес', 'Econ ECO-1781KE', '1500 Вт')
+class ElectricKettle {
+    constructor(volume, thermoregulator, delStart, statusActivation) {
+        this.volume = volume,
+            this.thermoregulator = `${thermoregulator}`,
+            this.delStart = `${delStart}`,
+            this.statusActivation = statusActivation
+    }
 
-tableLamp = new TableLamp('белый', 'LED', '1', ElectronicDevice.prototype.shutdownDevice())
-electricKettle = new ElectricKettle('1.8л', 'нет', 'нет', ElectronicDevice.prototype.shutdownDevice())
+    getInfoDevice(){
+        return '<span>Объем: ' + this.volume +  '</span><br>' + '<span>Терморегулятор: ' + this.thermoregulator +  '</span><br>' + '<span>Отложенный старт: ' + this.delStart +  '</span><br>'
+    }
 
-document.getElementById('tableLamp').innerHTML = "<span>Название модели: " + tableLamp.name + "</span><br>" + tableLamp.modelDevice + '<br>' + tableLamp.color + '<br>' + tableLamp.statusActivation + '<br>'
+}
 
-document.getElementById('electricKettle').innerHTML = electricKettle.name + "<br>" + electricKettle.modelDevice + '<br>' + electricKettle.delStart + '<br>' + electricKettle.statusActivation + '<br>'
+let electroDev = new ElectronicDevice()
+let tableLamp = new TableLamp()
+let electricKettle = new ElectricKettle()
+
+tableLamp = new TableLamp('белый', 'LED', '1', electroDev.setShutdownDevice())
+electricKettle = new ElectricKettle('1.8л', 'нет', 'нет', electroDev.setShutdownDevice())
+
+tableLamp.prototype = new electroDev.constructor('Настольный светильник Xiaomi Mi Smart LED Desk Lamp 1S белый',
+    'настольный светильник', '12 мес', 'Xiaomi Mi Smart LED Desk Lamp 1S', '9')
+electricKettle.prototype = new electroDev.constructor('Электрочайник Econ ECO-1781KE бежевый',
+    'электрочайник', '12 мес', 'Econ ECO-1781KE', '1500')
+console.log(electricKettle)
+
+document.getElementById('tableLamp').innerHTML = "<span>Название модели: " + tableLamp.prototype.name + "</span><br>" + tableLamp.prototype.modelDevice + '<br>'  + tableLamp.statusActivation + '<br>'
+
+document.getElementById('electricKettle').innerHTML = "<span>Название модели: " + electricKettle.prototype.name + "<br>" + electricKettle.prototype.modelDevice + '<br>'  + electricKettle.statusActivation + '<br>'
 
 document.getElementById('clickEnSHEK').addEventListener('click', function () {
-    electricKettle.getChangeActivation()
+    electroDev.getChangeActivation('electricKettle', electricKettle, 'clickEnSHEK')
 })
 document.getElementById('clickEnSHTL').addEventListener('click', function () {
-    tableLamp.getChangeActivation()
+    electroDev.getChangeActivation('tableLamp', tableLamp, 'clickEnSHTL')
 })
 
